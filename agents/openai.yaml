@@ -1,0 +1,14 @@
+interface:
+  display_name: Strategy Allocation Research Lab
+  short_description: Evaluate strategy allocations and generate research reports
+  default_prompt: Use $analyze-fx-factors to evaluate my monthly strategies and generate
+    an investment research report.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

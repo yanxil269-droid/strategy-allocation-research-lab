@@ -1,0 +1,11 @@
+# Reusable screening contract
+
+Input: CSV/Excel date plus >=3 named strategy columns, consecutive unique monthly observations, numeric finite simple returns. Explicit decimal/percent, gross/net/unknown fees and excess/total flags required. Total returns need a risk-free column in the same units; subtract period by period before fitting. Date selection may be changed, but frequency is monthly only. No price conversion, automatic missing-value filling, asset-specific currency factors, or automatic factor selection.
+
+Output: eight allocation series on common dates, stats and equal-benchmark Sharpe differences; calendar five-year blocks (partial edge blocks labeled; >=12 months), net/gross exposure and largest absolute-weight share. Confidence intervals and statistical significance are not supplied. Report.html is self-contained, escapes user text and embeds its chart. All CSVs and run metadata preserve traceability.
+
+Activity proxy = sum over strategies of absolute current target exposure minus previous target exposure; initial previous exposure is zero. No half factor: bps charged per unit of absolute exposure change, including opening allocation; no closing liquidation. Cost scenario return = original excess return minus activity times bps/10000. This is NOT actual traded turnover: factor strategies may embed long-short positions, underlying turnover is unavailable, weight drift/funding/cash balances are not modeled. Embedded source-level costs may overlap hypothetical extra charges. Default 0/5/10 bps are sensitivity assumptions, not estimates. Reject return <= -100% after scenario costs.
+
+Risk attribution remains optional future development; generic reports deliberately skip it. FX pricing remains a separate module. Parameter sensitivity is also future work. No broad all-asset suitability or investability claim is made. Undefined normalization, insufficient history, singular covariance or infeasible exact-risk MaxRet abort rather than selecting a substitute.
+
+Report findings compare numerical evidence without a mechanical buy recommendation. Subperiod wins and marginal Sharpe differences are descriptive and selection-biased; they are not proof of robust superiority.
